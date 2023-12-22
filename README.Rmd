@@ -1,0 +1,62 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
+
+# ltdecomp
+
+<!-- badges: start -->
+<!-- badges: end -->
+
+The goal of ltdecomp is to build simple life-tables from mortality data and 
+then perform life-table decompositions to isolate the contribution of specific 
+causes of death to life-expectancy. The package is designed for private use on 
+historical mortality data, but should work for any collection of information on
+populations and associated numbers of deaths. 
+
+## Installation
+
+You can install the development version of ltdecomp from [GitHub](https://github.com/) with:
+
+``` r
+# install.packages("devtools")
+devtools::install_github("gabrielfgm/ltdecomp")
+```
+
+## Example
+
+This is a basic example of constructing a lifetable:
+
+```{r example}
+library(ltdecomp)
+## basic example code
+
+# Age groups
+Age <-  c("0", "1-4", "5-9", "10-14", "15-19", "20-24", "25-29", "30-34", 
+          "35-39", "40-44", "45-49", "50-54", "55-59", "60-64", "65-69",
+          "70-74", "75-79", "80-84", "85-89", "90-94", "95+") 
+
+# Death counts
+Dx <- c(110934, 17693, 9168, 7378, 12192, 13356, 14223, 19210, 29136, 42961, 64310, 
+        90630, 116759, 153504, 196682, 223796, 220065, 185305, 120414, 50299, 13887)
+
+# mid year population
+Px <- c(4126560, 16195304, 18659141, 16815965, 13287434, 10803165, 10870165,
+        11951709, 12508316, 11567216, 10528878, 9696502, 8595947, 7111897, 6186763,
+        4661136, 2977347, 1518206, 648581, 170653, 44551)
+
+lifetable(age = Age, Dx = Dx, Px = Px)
+
+```
+
+
