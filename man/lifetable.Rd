@@ -4,7 +4,7 @@
 \alias{lifetable}
 \title{Construct a lifetable}
 \usage{
-lifetable(age, Dx, Px)
+lifetable(age, Dx, Px, age_group_length = c(1, 4, rep(5, ngroup - 2)))
 }
 \arguments{
 \item{age}{A vector of ages or age ranges, e.g. '0-1', '1-4', '5-9', etc}
@@ -12,12 +12,14 @@ lifetable(age, Dx, Px)
 \item{Dx}{A numeric vector of death counts for the age groups.}
 
 \item{Px}{A numeric vector of population sizes for the age groups.}
+
+\item{age_group_length}{A numeric vector giving the length of each age group interval. The default values are for an infant-mortality value of 1, an early-childhood mortality of 4, and then 5 year age bins.}
 }
 \value{
 A dataframe containing a completed life-table.
 The column 'age' returns the age groups.
 Column 'mx' is the mortality rate at age x.
-Column 'ax' is the estimated mortality rate for individuals that die within the age range of x, e.g. individuals that die between '1-4' for age '1-4'.
+Column 'ax' is the average number of person-years lived by individuals that die within the age range of x, e.g. individuals that die between '1-4' for age '1-4'.
 Column 'qx' is the probability of dying at age x.
 Column 'lx' is the magnitude of the population at x. It has a fixed radix of 1.
 Column 'dx' is the number of lifetable deaths.

@@ -1,5 +1,5 @@
 Package: ltdecomp
-Title: What the Package Does (One Line, Title Case)
+Title: Lifetable Decompositions by Cause of Death
 Version: 0.0.0.9000
 Authors@R: 
     person("Gabriel", "Mesevage", , "gabriel.mesevage@gmail.com", role = c("aut", "cre"),

@@ -3,11 +3,12 @@
 #' @param age A vector of ages or age ranges, e.g. '0-1', '1-4', '5-9', etc
 #' @param Dx A numeric vector of death counts for the age groups.
 #' @param Px A numeric vector of population sizes for the age groups.
+#' @param age_group_length A numeric vector giving the length of each age group interval. The default values are for an infant-mortality value of 1, an early-childhood mortality of 4, and then 5 year age bins.
 #'
 #' @return A dataframe containing a completed life-table.
 #' The column 'age' returns the age groups.
 #' Column 'mx' is the mortality rate at age x.
-#' Column 'ax' is the estimated mortality rate for individuals that die within the age range of x, e.g. individuals that die between '1-4' for age '1-4'.
+#' Column 'ax' is the average number of person-years lived by individuals that die within the age range of x, e.g. individuals that die between '1-4' for age '1-4'.
 #' Column 'qx' is the probability of dying at age x.
 #' Column 'lx' is the magnitude of the population at x. It has a fixed radix of 1.
 #' Column 'dx' is the number of lifetable deaths.
@@ -32,14 +33,14 @@
 #'         4661136, 2977347, 1518206, 648581, 170653, 44551)
 #'
 #' lifetable(age = Age, Dx = Dx, Px = Px)
-lifetable <- function(age, Dx, Px) {
+lifetable <- function(age, Dx, Px, age_group_length = c(1, 4, rep(5, ngroup - 2))) {
   # Death rates
   mx <- Dx / Px
   # Number of age groups
   ngroup <- length(Dx)
 
   # Length of each age group
-  n <- c(1, 4, rep(5, ngroup - 2))
+  n <- age_group_length
 
   # Average person years lived by those dying in the interval
   ax <- n/2
